@@ -1,6 +1,30 @@
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+
 This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
-Please use **one** of the two installation options, either native **or** docker installation.
+### Our Environment Setup:
+* Native Linux Ubuntu 16.04
+* tensor flow 1.3, adding the "flags" module from 1.4 (This is the only missing module in 1.3 that is needed for the project.)
+* we used tf-gpu
+
+### Step by Step:
+* Following the videos in the lesson to get the code running in the simulator
+* Adapting the PID Controller of throttle with better values
+* Making Image classification for traffic lights as a separate project to generate the frozen inference graph. In this point we relied on the step-by-step clarification of [Alex Lechner](https://github.com/alex-lechner/Traffic-Light-Classification) with the following modifications:
+** In the config file, we used Adam Optimizer instead of RMS optimizer. THis helped us reach same or almost better results with much fewer steps.
+** reduced the dropout keep value to 0.5
+* Tried different results of the training/validation sets until we reached satisfying results
+* Tuning the PID after the classification step
+* Fixed some issues with the braking of the car
+* Trying the results with the ros bag
+
+### Team Members:
+|  Role      | Name | Email  |
+| :-----------: |:-------------:| :-----:|
+| Team Leader | Hussain Abosobaie | hussain.sobaie@gmail.com |
+| Team Member | Karim Aboubakr | karim.m.nasreldin@gmail.com |
+| Team Member | Jerry Wang | jianshuwang.1@gmail.com |
+| Team Member | Dragan Labalo | dragan.labalo@gmail.com |
 
 ### Native Installation
 
@@ -18,19 +42,6 @@ Please use **one** of the two installation options, either native **or** docker 
 * [Dataspeed DBW](https://bitbucket.org/DataspeedInc/dbw_mkz_ros)
   * Use this option to install the SDK on a workstation that already has ROS installed: [One Line SDK Install (binary)](https://bitbucket.org/DataspeedInc/dbw_mkz_ros/src/81e63fcc335d7b64139d7482017d6a97b405e250/ROS_SETUP.md?fileviewer=file-view-default)
 * Download the [Udacity Simulator](https://github.com/udacity/CarND-Capstone/releases).
-
-### Docker Installation
-[Install Docker](https://docs.docker.com/engine/installation/)
-
-Build the docker container
-```bash
-docker build . -t capstone
-```
-
-Run the docker file
-```bash
-docker run -p 4567:4567 -v $PWD:/capstone -v /tmp/log:/root/.ros/ --rm -it capstone
-```
 
 ### Port Forwarding
 To set up port forwarding, please refer to the "uWebSocketIO Starter Guide" found in the classroom (see Extended Kalman Filter Project lesson).
@@ -87,4 +98,3 @@ Specific to these libraries, the simulator grader and Carla use the following:
 | OpenCV | 3.2.0-dev | 2.4.8 |
 | OpenMP | N/A | N/A |
 
-We are working on a fix to line up the OpenCV versions between the two.
